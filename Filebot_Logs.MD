@@ -1,12 +1,10 @@
 ﻿#FILEBOT LOGS
-----
 
 * Application: Filebot CLI (not a separate program.)
 	* NOTES: Add filebot to Environment Path to make execution convenient. Add "filebot.launcher.exe" in the environment path in the previous step if you want to prevent the console from popping up.
 * AUTHOR: ARION_MILES
 
 ## qBittorrent
---------------
 
 Date: 07 Jan, 2017
 After KickAss Torrents went down on July 20 last year, I had to make do with ExtraTorrent's RSS Feeds. The feeds would work fine if they utilized HTTPS 
@@ -42,7 +40,6 @@ exec="@E:/path/to/args.txt"
 ```
 
 ##μtorrent
-----
 Date: 19 May, 2016:
 I wasn't satisfied with the previous Pushbullet because there were not dynamic. The Pushbullet message preset in the previous log's script is only good
 enough for TV Series. But when it comes to Movies, it's not the optimal choice. Also, writing long lines with multiple quotations in them can be pretty
@@ -70,7 +67,7 @@ make a donation to him and get it done by him or run an external program which w
 external program to handle the pushbullet alerts. I'm using an unofficial CLI tool built by dendory [https://github.com/dendory/pushbullet_cli]. 
 It basically allows me to modify the pushbullet message.
 
-*USAGE:* Add the pushbullet.exe in ./Tools to your System32 dir. and use the below script.
+**USAGE:** Add the pushbullet.exe in ./Tools to your System32 dir. and use the below script.
 
 SCRIPT:
 ```
@@ -79,6 +76,7 @@ filebot -script fn:amc --output "E:/" --action move --conflict auto -non-strict 
 --def excludeList=amc.txt 
 --def "exec=pushbullet -apikey \"apikey\" -title \"New episode of {n} is here! \" -message \"{s00e00} - {t} has been downloaded.\""
 ```
+
 ----
 
 Date: 07 May, 2016:
@@ -92,7 +90,7 @@ a torrent is finished processing by Filebot and it's accompanied by a HTML file 
 
 NOTES: Change "apikey" & path/to/media with your own Pushbullet apikey and media path respectively.
 
-*USAGE:* Add this below script to μtorrent to execute it after a torrent is finished.
+**USAGE:** Add this below script to μtorrent to execute it after a torrent is finished.
 `μtorrent > Preferences > Advanced > Run Program > Run this program when a torrent finishes`
 
 *NOTE:* ALWAYS USE Forward-slash (/) WHEN DENOTING FOLDERS\FILES IN THE SCRIPT TO AVOID CONFLICTS.
@@ -104,10 +102,10 @@ filebot -script fn:amc --output "path/to/media" --action move --conflict skip -n
 "ut_file=%F" "ut_dir=%D" "ut_kind=multi" "ut_title=%N" "ut_label=%L" --def "seriesFormat=/TV Shows/{n}/{'Season '+s}/{s00e00} - {t }" 
 --def excludeList=amc.txt --def pushbullet=apikey
 ```
+
 ----
 
 ## qBittorrent
-----
 Date: 29 Apr, 2016:
 The last script gave me another issue. It would run renaming for all the folders present in the directory and messing up with active/incomplete
 downloads. This should hopefully solve all problems for now. 
@@ -119,6 +117,7 @@ filebot -script fn:amc --output "/path/to/media/" --action move
 --def unsorted=y clean=y subtitles=en "ut_dir=%F" "ut_kind=multi" 
 "ut_title=%N" "ut_label=%L" --def "seriesFormat=/TV Shows/{n}/{'Season '+s}/{s00e00} - {t }" --def excludeList=amc.txt
 ```
+
 ----
 
 Date: 22 Apr, 2016:
@@ -134,6 +133,7 @@ filebot -script fn:amc --output "E:/" --action move -non-strict "E:/New"
 --log-file amc.log --def "seriesFormat=/TV Shows/{n}/{'Season '+s}/{s00e00} - {t
 }" --def subtitles=en clean=y --conflict skip
 ```
+
 ----
 
 
@@ -145,9 +145,7 @@ file to the movies folder.
 NOTE: For the purpose of convenience, movies are now directly stored in the "Movies" folder and not in ".\Movies\Blu-Ray & DVDs\Hollywood".
 
 USAGE: Add this below script to qBittorrent to execute it after a torrent is finished.
-_____________________________________________________________________________
-qBittorrent > Tools > Downloads > Run external program on torrent completion.
-_____________________________________________________________________________
+```qBittorrent > Tools > Downloads > Run external program on torrent completion.```
 NOTE: ALWAYS USE Forward-slash (/) WHEN DENOTING FOLDERS\FILES IN THE SCRIPT TO AVOID CONFLICTS.
 
 !NOW OBSOLETE!
@@ -157,6 +155,7 @@ filebot -script fn:amc --output "/downloadsFolder/" --action symlink --conflict 
 --log-file amc.log unsorted=n music=n artwork=n "ut_dir=%F" "ut_kind=multi" "ut_title=%N" 
 "ut_label=%L" --def "seriesFormat={s00e00} - {t}"
 ```
+
 ----
 
 
@@ -175,5 +174,6 @@ ECHO Renaming in progress...
 @ECHO OFF
 filebot -rename <path\to\media>
 ```
+
 ----
 
