@@ -25,14 +25,14 @@ For qBittorrent, paste the script here:
 ## Filebot
 >Filebot is the ultimate tool for organizing and renaming your movies, tv shows or anime, and music well as downloading subtitles and artwork. It's smart and just works.
 
-/- [FileBot.net](http://www.filebot.net/)
+\- [FileBot.net](http://www.filebot.net/)
 
 This is my current script ([qBittorrent](https://www.filebot.net/forums/viewtopic.php?t=215#p9774)).
 ```text
 filebot -script fn:amc --output "/path/to/media" --action move --conflict auto -non-strict --log-file amc.log --def unsorted=y subtitles=en clean=y "ut_dir=%F" "ut_kind=multi" "ut_title=%N" "ut_label=%L" "seriesFormat=path/to/TV Shows/{n}/{'Season '+s}/{s00e00} - {t }" exec="@E:\New\args.txt"
 ```
 
-An extensive log of filebot scripts I went through is present in [Filebot_Logs.MD](../master/Filebot_Logs.md) file
+An extensive log of filebot scripts I went through is present in [Filebot_Logs](../master/Filebot_Logs.MD) file
 
 ## RSS Feeds
 1. Get a RSS feed link from your favourite Torrent Aggregator (I use Zooqle) for the desired tv show from a particular uploader of your choice. 
