@@ -1,6 +1,5 @@
 # Torrent Automation
-
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+**Author:** Arion Miles
 
 ### How it works:
 I use Filebot's [AMC script](https://www.filebot.net/forums/viewtopic.php?t=215) for qBittorrent which automatically executes once a torrent has finished downloading, then the filebot script sorts them out into Movies/TV series and on the basis of that renames them into `SxxExx - Title` format and puts them into their respective `SeriesTitle/Season xx` folders.
@@ -37,12 +36,12 @@ An extensive log of filebot scripts I went through is present in [Filebot_Logs](
 ## RSS Feeds
 1. Get a RSS feed link from your favourite Torrent Aggregator (I use Zooqle) for the desired tv show from a particular uploader of your choice. 
 
-Use the following search parameters:
+ Use the following search parameters:
 
-Search > `{TVSeriesName} {quality} {suffixes} DesiredUser`
+ Search > `{TVSeriesName} {quality} {suffixes} DesiredUser`
 
-where {suffixes} = LOL/Xvid-FUM/DIMENSION/RARBG. Leave it blank if your search with `seriesName`, 
-`quality` & `DesiredUser` return satifactory results.
+ where {suffixes} = LOL/Xvid-FUM/DIMENSION/RARBG. Leave it blank if your search with `seriesName`, 
+ `quality` & `DesiredUser` return satifactory results.
 
 2. Add this link to your RSS subscription's list.
 
