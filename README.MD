@@ -1,5 +1,4 @@
 # Torrent Automation
----------------------
 
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
@@ -18,15 +17,14 @@ Consists of 4 parts:
 * [Notifications](#notifications)
 
 ## Torrent Client
---------------
 You can use any torrent client, but bear in mind that different clients have minor changes in the Filebot script depending upon their supported parameters. I'm using [qBittorrent](https://github.com/qbittorrent/qBittorrent). [Look at this guide](https://www.filebot.net/forums/viewtopic.php?t=215) from Rednoah on Filebot forums to choose proper script for your client.
 
 For qBittorrent, paste the script here:
 <kbd>Tools</kbd> 🡪 <kbd>Options (Alt + O)</kbd> 🡪 <kbd>Downloads</kbd> 🡪 <kbd>Run external program on torrent completion</kbd>
 
 ## Filebot
-----------
 >Filebot is the ultimate tool for organizing and renaming your movies, tv shows or anime, and music well as downloading subtitles and artwork. It's smart and just works.
+
 /- [FileBot.net](http://www.filebot.net/)
 
 This is my current script ([qBittorrent](https://www.filebot.net/forums/viewtopic.php?t=215#p9774)).
@@ -37,7 +35,6 @@ filebot -script fn:amc --output "/path/to/media" --action move --conflict auto -
 An extensive log of filebot scripts I went through is present in [Filebot_Logs.MD](../master/Filebot_Logs.md) file
 
 ## RSS Feeds
-------------
 1. Get a RSS feed link from your favourite Torrent Aggregator (I use Zooqle) for the desired tv show from a particular uploader of your choice. 
 
 Use the following search parameters:
@@ -52,11 +49,9 @@ where {suffixes} = LOL/Xvid-FUM/DIMENSION/RARBG. Leave it blank if your search w
 3. Set a new rule in the RSS Downloader for your particular TV Series (or user, in the case of Movies) and set it to contain a specific keyword and set the Episode filter according to the season and no. of episodes it has. Apply this rule to your particular subscribed feed.
 
 4. Test it multiple times to make sure you're doing it right.
-## Notifications
-----
 
+## Notifications
 
 ## Further Reading
-----
 
 Read [this](https://www.filebot.net/forums/viewtopic.php?t=215) comprehensive guide on Filebot arguments/paraments by Rednoah (Filebot dev) to further improve and customize your script according to your needs.
