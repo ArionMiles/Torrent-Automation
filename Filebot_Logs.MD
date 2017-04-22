@@ -1,10 +1,10 @@
-﻿## FILEBOT LOGS
+﻿# FILEBOT LOGS
 
 * **APPLICATION:** Filebot CLI (not a separate program.)
 	* NOTES: Add filebot to Environment Path to make execution convenient. Add "filebot.launcher.exe" in the environment path in the previous step if you want to prevent the console from popping up.
 * **AUTHOR:** Arion Miles
 
-### qBittorrent
+## qBittorrent
 
 **Date: 07 Jan, 2017:**
 After KickAss Torrents went down on July 20 last year, I had to make do with ExtraTorrent's RSS Feeds. The feeds would work fine if they utilized HTTPS only functionality which ExtTorrents didn't, because my ISP blocked access to HTTP versions of most torrent sites, so the past six months have been a chore and mildly inconvenient for my setup. Also, qBit's ability to auto execute scripts upon torrent completion didn't work after v3.3.4 that is, until someone on Github recently taught me a solution to the problem. So here's a new script:
@@ -35,7 +35,7 @@ exec="@E:/path/to/args.txt"
 ```
 
 ----
-### μtorrent
+## μtorrent
 **Date: 19 May, 2016:**
 I wasn't satisfied with the previous Pushbullet because there were not dynamic. The Pushbullet message preset in the previous log's script is only good enough for TV Series. But when it comes to Movies, it's not the optimal choice. Also, writing long lines with multiple quotations in them can be pretty confusing and a mess to debug because of escape characters, so I put the pushbullet message line inside a text file and called it with: `--def "exec=@path/to/args.txt"` for ease of access and understanding.
 
@@ -92,7 +92,7 @@ filebot -script fn:amc --output "path/to/media" --action move --conflict skip -n
 
 ----
 
-## qBittorrent
+# qBittorrent
 **Date: 29 Apr, 2016:**
 The last script gave me another issue. It would run renaming for all the folders present in the directory and messing up with active/incomplete downloads. This should hopefully solve all problems for now. 
 
