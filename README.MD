@@ -36,11 +36,11 @@ An extensive log of filebot scripts I went through is present in [Filebot_Logs](
 ## RSS Feeds
 1. Get a RSS feed link from your favourite Torrent Aggregator (I use Zooqle) for the desired tv show from a particular uploader of your choice. 
 
- Use the following search parameters:
-
- Search > `{TVSeriesName} {quality} {suffixes} DesiredUser`
-
- where {suffixes} = LOL/Xvid-FUM/DIMENSION/RARBG. Leave it blank if your search with `seriesName`, 
+    Use the following search parameters:
+    
+    Search > `{TVSeriesName} {quality} {suffixes} DesiredUser`
+    
+    where {suffixes} = LOL/Xvid-FUM/DIMENSION/RARBG. Leave it blank if your search with `seriesName`, 
  `quality` & `DesiredUser` return satifactory results.
 
 2. Add this link to your RSS subscription's list.
@@ -68,7 +68,7 @@ Message: The Movie is ready.
 Title: Game of Thrones
 Message: S06E09 - The Battle of Bastards is ready.
 ```
-### Pushbullet:
+#### Pushbullet:
 ----
 For pushbullet, you need the API key, and [a python script](https://raw.githubusercontent.com/dendory/scripts/091692bb07c685f5222e8d1f9e783db5b82c4f9f/pushbullet.py) made by Dendory. You can get the [Pushbullet API Key here](https://www.pushbullet.com/#settings/account).
 
@@ -79,7 +79,7 @@ pushbullet.py -key YOUR_API_KEY -title "{movie}{episode; n}" -message "{movie; '
 
 Add this script to your environment variable OR a folder which is in your environment variable (Except C:\Windows\System32, never do that.)
 
-### Telegram
+#### Telegram:
 ----
 For Telegram, you can use a script I made, [available here](https://github.com/ArionMiles/Filebot-To-Telegram/). Look at the instructions on the git repo. Be sure to edit the `creds.ini` with your Bot's `token` and `CHAT_ID`.
 
@@ -87,6 +87,25 @@ In `args.txt` paste the below line:
 ```
 telegram.py -t "*{movie}{episode; n}*" -m "{movie; 'The movie'}_{episode; s00e00}{episode; ' - '}{episode; t}_ {movie; 'is ready.'}{episode; "is ready."}"
 ```
+
+## Tips & Common Issues
+1. If you're on Windows and cannot run the telegram/pushbullet script from the command line after adding it to env. variables, do the following:
+
+    Regedit > HKEY\_CLASSES\_ROOT\Applications\python27.exe\shell\open\command
+   
+    And change the value from : `"C:\Python27\python27.exe" "%1"`
+   
+    To: `"C:\Python27\python27.exe" "%1" *%`
+
+    **adjust the path to your specific Python version.**
+
+    Read more about this [here.](http://eli.thegreenplace.net/2010/12/14/problem-passing-arguments-to-python-scripts-on-windows/)	
+
+2. Things will hardly go right in the first run, it took me 20 days to get the basic setup working as intended. So it's handy to have the Filebot's AMC log file close to your working directory. As for me, I keep it in my downloads folder (which I've named NEW). The file logs every step Filebot takes while processing new downloads and throws errors which are useful for troubleshooting, it still helps me when things don't go as planned.
+
+    The Filebot AMC log can be found at `C:\Users\%USERPROFILE%\AppData\Roaming\FileBot\logs\amc.log` on Windows.
+    Create a shortcut to this file in your downloads directory.
+
 ## Further Reading
 
 Read [this](https://www.filebot.net/forums/viewtopic.php?t=215) comprehensive guide on Filebot arguments/parameters by Rednoah (Filebot dev) to further improve and customize your script according to your needs.
