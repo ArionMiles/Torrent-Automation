@@ -106,6 +106,21 @@ telegram.py -t "*{movie}{episode; n}*" -m "{movie; 'The movie'}_{episode; s00e00
     The Filebot AMC log can be found at `C:\Users\%USERPROFILE%\AppData\Roaming\FileBot\logs\amc.log` on Windows.
     Create a shortcut to this file in your downloads directory.
 
+3. Create a manual.bat/manual.sh file in your downloads dir with the Filebot script with a little modification. Sometimes Filebot may fail to process the file, citing the file is already in use by another process. In that case, this batch/bash file will help immensely.
+    
+    For example, for my current script, I'd paste the below **as a single line** into a text file and save it as `Manual.bat` or `Manual.sh` in the downloads directory.
+    ```
+    filebot -script fn:amc --output "output/dir" --action move --conflict skip -
+    non-strict "path/to/downloads/directory" --log-file amc.log --def unsorted=y clean=y 
+    subtitles=en "seriesFormat=/TV Shows/{n}/{'Season 
+    '+s}/{s00e00} - {t }" --def "exec=@path/to/args.txt"
+    ```
+     Change the output/dir, path/to/args.txt, and "E:/New" with what you put in the filebot script above. For testing/trial purposes, just paste already processed file in your downloads directory, rename it in a format the torrent uploaders do, like `Netflix.Daredevil.S02E04.x264.720p.aac` and run the batch file from command line. You'll be able to see every error easily, also the logs for this will be stored in the same `amc.log` file.
+
+4. Currently, please use Filebot 4.7.5 or lower with this script, because the `exec="@path/to/args.txt"` hook is broken in Filebot v4.7.7 and above. I've created an [issue ticket on Filebot's git repo](https://github.com/filebot/filebot/issues/26) about this.
+
+5. If even on torrent completion, Filebot doesn't run the script, you must make sure all the three main components, i.e., qBittorrent, Java JRE, and Filebot installed are of similar system architecture (i.e., either all 32-bit or 64-bit depending on your system architecture).
+
 ## Further Reading
 
 Read [this](https://www.filebot.net/forums/viewtopic.php?t=215) comprehensive guide on Filebot arguments/parameters by Rednoah (Filebot dev) to further improve and customize your script according to your needs.
