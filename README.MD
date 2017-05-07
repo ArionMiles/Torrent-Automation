@@ -117,7 +117,7 @@ telegram.py -t "*{movie}{episode; n}*" -m "{movie; 'The movie'}_{episode; s00e00
     ```
      Change the output/dir, path/to/args.txt, and "E:/New" with what you put in the filebot script above. For testing/trial purposes, just paste already processed file in your downloads directory, rename it in a format the torrent uploaders do, like `Netflix.Daredevil.S02E04.x264.720p.aac` and run the batch file from command line. You'll be able to see every error easily, also the logs for this will be stored in the same `amc.log` file.
 
-4. Currently, please use Filebot 4.7.5 or lower with this script, because the `exec="@path/to/args.txt"` hook is broken in Filebot v4.7.7 and above. I've created an [issue ticket on Filebot's git repo](https://github.com/filebot/filebot/issues/26) about this.
+4. Currently, please use Filebot 4.7.5 or lower (available on [SourceForge](https://sourceforge.net/projects/filebot/files/filebot/) and [FileHippo](http://filehippo.com/download_filebot/history/)) with this script, because the `exec="@path/to/args.txt"` hook is broken in Filebot v4.7.7 and above. I've created an [issue ticket on Filebot's git repo](https://github.com/filebot/filebot/issues/26) about this.
 
 5. If even on torrent completion, Filebot doesn't run the script, you must make sure all the three main components, i.e., qBittorrent, Java JRE, and Filebot installed are of similar system architecture (i.e., either all 32-bit or 64-bit depending on your system architecture).
 
