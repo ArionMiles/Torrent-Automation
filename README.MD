@@ -80,7 +80,7 @@ For pushbullet, you need the API key, and [a python script](https://raw.githubus
 
 Now, in `args.txt` paste the below line:
 ```
-pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
+pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
 ```
 
 Add this script to your environment variable OR a folder which is in your environment variable (Except C:\Windows\System32, never do that.)
@@ -91,7 +91,7 @@ For Telegram, you can use a script I made, [available here](https://github.com/A
 
 In `args.txt` paste the below line:
 ```
-telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
+telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
 ```
 
 ## Tips & Common Issues

@@ -16,13 +16,13 @@ Here's the new `args.txt` for Pushbullet & Telegram:
 1. **Pushbullet:**
 
     ```
-    pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
+    pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
     ```
 
 2. **Telegram:**
 
     ```
-    telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
+    telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}}{movie}} _ is ready.")}
     ```
 
 ----
