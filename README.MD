@@ -33,6 +33,12 @@ filebot -script fn:amc --output "/path/to/media" --action move --conflict auto -
 
 An extensive log of filebot scripts I went through is present in [Filebot_Logs](../master/Filebot_Logs.MD) file
 
+**NOTE**: The TVDb API v1, which is used by Filebot for fetching Series info [will be disabled](https://forums.thetvdb.com/viewtopic.php?f=3&t=36557) on **1st October 2017** in favour of [TVDb API v2.](https://api.thetvdb.com/swagger)
+
+As a result, all older versions of Filebot cannot be used for Series renaming after 1st Oct. 2017. Therefore, you must update Filebot to the latest version from Filebot.net 
+
+The newer versions of Filebot are paid for Windows, were always paid for Mac OS, and are free as of now for Linux. The dev works very hard on the software and provides excellent support on [his Forum](https://www.filebot.net/forums/), which helped me make this guide in such detail for everyone. If you cannot afford it, the dev is considerate enough to upload the binaries to [SourceForge](https://sourceforge.net/projects/filebot/files/filebot/) where you can download the installer for free. But please consider donating to him for his hardwork and prompt support.
+
 ## RSS Feeds
 1. Get a RSS feed link from your favourite Torrent Aggregator (I use Zooqle) for the desired tv show from a particular uploader of your choice. 
 
