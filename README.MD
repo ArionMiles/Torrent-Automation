@@ -74,7 +74,7 @@ For pushbullet, you need the API key, and [a python script](https://raw.githubus
 
 Now, in `args.txt` paste the below line:
 ```
-pushbullet.py -key YOUR_API_KEY -title "{movie}{episode; n}" -message "{movie; 'The movie'}{episode; s00e00}{episode; ' - '}{episode; t} {movie; 'is ready.'}{episode; "is ready."}"
+pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
 ```
 
 Add this script to your environment variable OR a folder which is in your environment variable (Except C:\Windows\System32, never do that.)
@@ -85,7 +85,7 @@ For Telegram, you can use a script I made, [available here](https://github.com/A
 
 In `args.txt` paste the below line:
 ```
-telegram.py -t "*{movie}{episode; n}*" -m "{movie; 'The movie'}_{episode; s00e00}{episode; ' - '}{episode; t}_ {movie; 'is ready.'}{episode; "is ready."}"
+telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
 ```
 
 ## Tips & Common Issues
@@ -117,9 +117,7 @@ telegram.py -t "*{movie}{episode; n}*" -m "{movie; 'The movie'}_{episode; s00e00
     ```
      Change the output/dir, path/to/args.txt, and "E:/New" with what you put in the filebot script above. For testing/trial purposes, just paste already processed file in your downloads directory, rename it in a format the torrent uploaders do, like `Netflix.Daredevil.S02E04.x264.720p.aac` and run the batch file from command line. You'll be able to see every error easily, also the logs for this will be stored in the same `amc.log` file.
 
-4. Currently, please use Filebot 4.7.5 or lower (available on [SourceForge](https://sourceforge.net/projects/filebot/files/filebot/) and [FileHippo](http://filehippo.com/download_filebot/history/)) with this script, because the `exec="@path/to/args.txt"` hook is broken in Filebot v4.7.7 and above. I've created an [issue ticket on Filebot's git repo](https://github.com/filebot/filebot/issues/26) about this.
-
-5. If even on torrent completion, Filebot doesn't run the script, you must make sure all the three main components, i.e., qBittorrent, Java JRE, and Filebot installed are of similar system architecture (i.e., either all 32-bit or 64-bit depending on your system architecture).
+4. If even on torrent completion, Filebot doesn't run the script, you must make sure all the three main components, i.e., qBittorrent, Java JRE, and Filebot installed are of similar system architecture (i.e., either all 32-bit or 64-bit depending on your system architecture).
 
 ## Further Reading
 
