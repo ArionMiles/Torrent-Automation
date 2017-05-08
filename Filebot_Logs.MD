@@ -1,10 +1,31 @@
 ﻿# FILEBOT LOGS
 
 * **APPLICATION:** Filebot CLI (not a separate program.)
-	* NOTES: Add filebot to Environment Path to make execution convenient. Add "filebot.launcher.exe" in the environment path in the previous step if you want to prevent the console from popping up.
-* **AUTHOR:** Arion Miles
+	* NOTES: Add filebot to Environment Path to make execution convenient. Add `filebot.launcher.exe` in the environment path in the previous step if you want to prevent the console from popping up.
+* **AUTHOR:** [Arion Miles](https://github.com/ArionMiles)
 
 ## qBittorrent
+
+**Date: 08 May, 2017:**
+Since the release of Filebot v4.7.7, rednoah has changed the way `--def exec="@path/to/exec-format.txt"` works. It now uses Powershell to pass media info to the external scripts rather than CMD (Command Prompt) on windows. This makes it behave closer the bash in Linux and according to rednoah, less code to write and maintain. This made me change my notification scripts because of the change in syntax.
+
+_Filebot version_: `v4.7.7` and higher (this is tested on `v4.7.9`)
+
+Here's the new `args.txt` for Pushbullet & Telegram:
+
+1. **Pushbullet:**
+
+    ```
+    pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
+    ```
+
+2. **Telegram:**
+
+    ```
+    telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00}{movie}} ${episode; '-'} ${episode; t} _ is ready.")}
+    ```
+
+----
 
 **Date: 07 Jan, 2017:**
 After KickAss Torrents went down on July 20 last year, I had to make do with ExtraTorrent's RSS Feeds. The feeds would work fine if they utilized HTTPS only functionality which ExtTorrents didn't, because my ISP blocked access to HTTP versions of most torrent sites, so the past six months have been a chore and mildly inconvenient for my setup. Also, qBit's ability to auto execute scripts upon torrent completion didn't work after v3.3.4 that is, until someone on Github recently taught me a solution to the problem. So here's a new script:
