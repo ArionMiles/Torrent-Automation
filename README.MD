@@ -97,11 +97,13 @@ telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + 
 ## Tips & Common Issues
 1. If you're on Windows and cannot run the telegram/pushbullet script from the command line after adding it to env. variables, do the following:
 
-    Regedit > HKEY\_CLASSES\_ROOT\Applications\python27.exe\shell\open\command
+    Regedit > `HKEY_CLASSES_ROOT\Applications\python.exe\shell\open\command`
    
-    And change the value from : `"C:\Python27\python27.exe" "%1"`
+    And change the value from : `"C:\Python27\python.exe" "%1"`
    
-    To: `"C:\Python27\python27.exe" "%1" *%`
+    To: `"C:\Python27\python.exe" "%1" %*`
+
+    Similarly, set `HKEY_CLASSES_ROOT\py_auto_file\shell\open\command` to the same value.
 
     **adjust the path to your specific Python version.**
 
