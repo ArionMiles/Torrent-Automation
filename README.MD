@@ -127,6 +127,8 @@ telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + 
 
 4. If even on torrent completion, Filebot doesn't run the script, you must make sure all the three main components, i.e., qBittorrent, Java JRE, and Filebot installed are of similar system architecture (i.e., either all 32-bit or 64-bit depending on your system architecture).
 
+5. Newer filebot versions use PowerShell to execute the `--def exec="@path/to/file"` hooks, meaning executing Python scripts with PowerShell leads to opening new Python window from PowerShell and then executing our script. This can be distracting for users if they download in the background and while processing the file, they see a shell pop-up on their screens. If you'd like to do this silently, then open CMD, type `powershell` wait for PowerShell to initialize, then add: `$env:PATHEXT += ";.py"` and press enter. Now PowerShell will execute Python files from within itself.
+
 ## Further Reading
 
 Read [this](https://www.filebot.net/forums/viewtopic.php?t=215) comprehensive guide on Filebot arguments/parameters by Rednoah (Filebot dev) to further improve and customize your script according to your needs.
