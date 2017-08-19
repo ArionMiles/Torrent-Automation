@@ -6,8 +6,30 @@
 
 ## qBittorrent
 
+**Date: 15 Aug, 2017:**
+I was thinking of making notifications better. Before this, I'd receive a notification for every file processed, meaning, if a series torrent with `n` number of episodes was processed, I'd receive `n` number of notifications. 
+
+This was really annoying when a single season had more than 8 episodes. So I made used of telegram's small blogging platform telegra.ph to make this simple. The `Episode Name`, and the `Series Title` would be written to a file after every torrent completion, and then my `FileProcessor.py` python script would run, and if more than 1 episode were processed, it'd submit those file names to telegra.ph with the `Series Title` as the article's title, and send that link to me via the bot. 
+
+Telegram has this interesting feature called **Instant View** which lets you open articles from telegra.ph or [any site with a template](https://instantview.telegram.org/) to open articles instantly inside the app itself.
+
+Since I had to execute `FileProcessor.py` after **Filebot** was done, couldn't run my python script from **--def exec** anymore. Since qBittorrent's `Execute After Torrent Completion` feature executes commands on a normal Command Prompt, I had to write the filebot script in such a way that it'd be written in Windows CMD, but executed in Powershell. This is the new Filebot script you feed into qBittorrent's `Run External Program After Torrent Completion` in Tools > Options > Downloads:
+
+```
+powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"; "&{&'\path\to\FileProcessor.py'}"
+```
+Replace `E:\` with your own directory/drive as usual.
+
+This is the new `args.txt`:
+```
+echo {quote("$n")} | Out-File -Encoding UTF8 SeriesName.txt; echo {quote("<b>${any{episode; s00e00 + ' - ' + t}{movie}}</b>")} | Out-File -Encoding UTF8 EpisodeDet.txt -append
+```
+**NOTE:** I haven't worked out anything for Pushbullet so far. For future though, I'd probably send the telegra.ph article link as the message content, even though it doesn't have an Instant View.
+
+----
+
 **Date: 08 May, 2017:**
-Since the release of Filebot v4.7.7, rednoah has changed the way `--def exec="@path/to/exec-format.txt"` works. It now uses Powershell to pass media info to the external scripts rather than CMD (Command Prompt) on windows. This makes it behave closer the bash in Linux and according to rednoah, less code to write and maintain. This made me change my notification scripts because of the change in syntax.
+Since the release of Filebot v4.7.7, rednoah has changed the way `--def exec="@path/to/exec-format.txt"` works. It now uses Powershell to pass media info to the external scripts rather than CMD (Command Prompt) on windows. This makes it behave closer to Bash in Linux and according to rednoah, less code to write and maintain. This made me change my notification scripts because of the change in syntax.
 
 _Filebot version_: `v4.7.7` and higher (this is tested on `v4.7.9`)
 
@@ -16,13 +38,13 @@ Here's the new `args.txt` for Pushbullet & Telegram:
 1. **Pushbullet:**
 
     ```
-    pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
+    pushbullet.py -key YOUR_API_KEY -title {quote("*$n*")} -message {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
     ```
 
 2. **Telegram:**
 
     ```
-    telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}}{movie}} _ is ready.")}
+    telegram.py -t {quote("*$n*")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}}{movie}} _ is ready.")}
     ```
 
 ----
@@ -62,7 +84,7 @@ I wasn't satisfied with the previous Pushbullet because there were not dynamic. 
 
 **USAGE:** Look at the below log's 'USAGE' section.
 
-*NOTES:* This is the pushbullet message line:
+*NOTES:* This is the pushbullet message line (NOW OUTDATED. REFER TO LOG OF **8 MAY, 2017**):
 ```
 pushbullet -apikey "apikey" -title "{movie}{episode; n}" -message "{movie; 'The movie'}{episode; s00e00}{episode; ' - '}{episode; t} is ready."
 ```
