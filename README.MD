@@ -27,8 +27,8 @@ For qBittorrent, paste the script here:
 \- [FileBot.net](http://www.filebot.net/)
 
 This is my current script ([qBittorrent](https://www.filebot.net/forums/viewtopic.php?t=215#p9774)).
-```text
-filebot -script fn:amc --output "/path/to/media" --action move --conflict auto -non-strict --log-file amc.log --def unsorted=y subtitles=en clean=y "ut_dir=%F" "ut_kind=multi" "ut_title=%N" "ut_label=%L" "seriesFormat=path/to/TV Shows/{n}/{'Season '+s}/{s00e00} - {t }" exec="@path/to/args.txt"
+```
+powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"; "&{&'\path\to\Notification_Processor.py'}"
 ```
 
 An extensive log of filebot scripts I went through is present in [Filebot_Logs](../master/Filebot_Logs.MD) file
