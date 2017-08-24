@@ -9,6 +9,27 @@ For movies, it simply renames them to `MovieName (YEAR)` format and puts them in
 Then I receive a Pushbullet/Telegram notification telling me if a Movie or a Series (with episode number and title) is ready and my [Plex](https://plex.tv) library is automatically updated.
 
 
+## Folder Structure:
+```
++---Web
+              
++---Movies
+
++---New
+|   +---config
+|   |       .Logs.lnk (Filebot AMC Log file)
+|   |       args.txt
+|   |       creds.ini
+|   |       EpisodeDet.txt
+|   |       Notification_Processor.py
+|   |       Manual.ps1
+|   |       SeriesName.txt
+|   |       telegram.py
+|   |       telegraph_post.py
+|
+
++---TV Shows
+```
 Consists of 4 parts:
 * [Torrent Client](#torrent-client)
 * [FileBot](#filebot)
