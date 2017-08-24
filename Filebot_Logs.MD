@@ -9,14 +9,14 @@
 **Date: 15 Aug, 2017:**
 I was thinking of making notifications better. Before this, I'd receive a notification for every file processed, meaning, if a series torrent with `n` number of episodes was processed, I'd receive `n` number of notifications. 
 
-This was really annoying when a single season had more than 8 episodes. So I made used of telegram's small blogging platform telegra.ph to make this simple. The `Episode Name`, and the `Series Title` would be written to a file after every torrent completion, and then my `FileProcessor.py` python script would run, and if more than 1 episode were processed, it'd submit those file names to telegra.ph with the `Series Title` as the article's title, and send that link to me via the bot. 
+This was really annoying when a single season had more than 8 episodes. So I made used of telegram's small blogging platform telegra.ph to make this simple. The `Episode Name`, and the `Series Title` would be written to a file after every torrent completion, and then my `Notification_Processor.py` python script would run, and if more than 1 episode were processed, it'd submit those file names to telegra.ph with the `Series Title` as the article's title, and send that link to me via the bot. 
 
 Telegram has this interesting feature called **Instant View** which lets you open articles from telegra.ph or [any site with a template](https://instantview.telegram.org/) to open articles instantly inside the app itself.
 
-Since I had to execute `FileProcessor.py` after **Filebot** was done, couldn't run my python script from **--def exec** anymore. Since qBittorrent's `Execute After Torrent Completion` feature executes commands on a normal Command Prompt, I had to write the filebot script in such a way that it'd be written in Windows CMD, but executed in Powershell. This is the new Filebot script you feed into qBittorrent's `Run External Program After Torrent Completion` in Tools > Options > Downloads:
+Since I had to execute `Notification_Processor.py` after **Filebot** was done, couldn't run my python script from **--def exec** anymore. Since qBittorrent's `Execute After Torrent Completion` feature executes commands on a normal Command Prompt, I had to write the filebot script in such a way that it'd be written in Windows CMD, but executed in Powershell. This is the new Filebot script you feed into qBittorrent's `Run External Program After Torrent Completion` in Tools > Options > Downloads:
 
 ```
-powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"; "&{&'\path\to\FileProcessor.py'}"
+powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"; "&{&'\path\to\Notification_Processor.py'}"
 ```
 Replace `E:\` with your own directory/drive as usual.
 
