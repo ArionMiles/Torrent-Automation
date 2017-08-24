@@ -56,7 +56,7 @@ The newer versions of Filebot are paid for Windows, were always paid for Mac OS,
 4. Test it multiple times to make sure you're doing it right.
 
 ## Notifications
-There are two main ways to receive push notifications on your mobile devices: Pushbullet & Telegram (I'm working on e-mail notifications).
+There are two main ways to receive push notifications on your mobile devices: Pushbullet & Telegram (Filebot supports e-mail notifications by default. Check out `--def mailto=email ` and `--def mail=host:port:from[:username:password]`).
 First, create a text file in the torrent download directory (ease of access/debugging).
 
 e.g: My download dir is `E:\New` and the file is named `args.txt` and its path is `E:\New\args.txt`.
@@ -91,8 +91,9 @@ For Telegram, you can use a script I made, [available here](https://github.com/A
 
 In `args.txt` paste the below line:
 ```
-telegram.py -t {quote("* $n *")} -m {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
+echo {quote("$n")} | Out-File -Encoding UTF8 SeriesName.txt; echo {quote("<b>${any{episode; s00e00 + ' - ' + t}{movie}}</b>")} | Out-File -Encoding UTF8 EpisodeDet.txt -append
 ```
+also create a `SeriesName.txt` & `EpisodeDet.txt` in the same directory.
 
 ## Tips & Common Issues
 1. If you're on Windows and cannot run the telegram/pushbullet script from the command line after adding it to env. variables, do the following:
