@@ -136,16 +136,15 @@ also create a `SeriesName.txt` & `EpisodeDet.txt` in the same directory.
     The Filebot AMC log can be found at `C:\Users\%USERPROFILE%\AppData\Roaming\FileBot\logs\amc.log` on Windows.
     Create a shortcut to this file in your downloads directory.
 
-3. Create a manual.bat/manual.sh file in your downloads dir with the Filebot script with a little modification. Sometimes Filebot may fail to process the file, citing the file is already in use by another process. In that case, this batch/bash file will help immensely.
+3. Create a manual.ps1/manual.sh file in your downloads dir with the Filebot script with a little modification. Sometimes Filebot may fail to process the file, citing the file is already in use by another process. In that case, this powershell/bash file will help to manually complete the task.
     
-    For example, for my current script, I'd paste the below **as a single line** into a text file and save it as `Manual.bat` or `Manual.sh` in the downloads directory.
+    For example, for my current script, I'd paste the below **as a single line** into a text file and save it as `Manual.ps1` or `Manual.sh` in the downloads directory.
     ```
-    filebot -script fn:amc --output "output/dir" --action move --conflict skip -
-    non-strict "path/to/downloads/directory" --log-file amc.log --def unsorted=y clean=y 
-    subtitles=en "seriesFormat=/TV Shows/{n}/{'Season 
-    '+s}/{s00e00} - {t }" --def "exec=@path/to/args.txt"
+    filebot -script fn:amc --output "E:/" --action move --conflict skip -non-strict "E:/New" --log-file amc.log --def "seriesFormat=/TV Shows/{n}/{'Season '+s}/{s00e00} - {t }" --def "exec=@E:/New/config/args.txt" ; .\Notification_Processor.py
     ```
      Change the output/dir, path/to/args.txt, and "E:/New" with what you put in the filebot script above. For testing/trial purposes, just paste already processed file in your downloads directory, rename it in a format the torrent uploaders do, like `Netflix.Daredevil.S02E04.x264.720p.aac` and run the batch file from command line. You'll be able to see every error easily, also the logs for this will be stored in the same `amc.log` file.
+
+     **Note:** Read about [enable execution of PowerShell scripts.](https://www.howtogeek.com/106273/how-to-allow-the-execution-of-powershell-scripts-on-windows-7/)
 
 4. If even on torrent completion, Filebot doesn't run the script, you must make sure all the three main components, i.e., qBittorrent, Java JRE, and Filebot installed are of similar system architecture (i.e., either all 32-bit or 64-bit depending on your system architecture).
 
