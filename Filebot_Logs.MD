@@ -6,6 +6,22 @@
 
 ## qBittorrent
 
+**Date: 23 Feb, 2018:**
+
+There was a problem with getting powershell to execute the Notification_Processor after Filebot was done renaming and moving the files. I now execute the `Notification_Processor.py` from inside the `args.txt` instead of separately executing them with powershell because for some reason they do not execute one after the other.
+
+This is the new `args.txt` for **Telegram**:
+```
+echo {quote("${any{episode; n}{movie}}")} | Out-File -Encoding UTF8 E:\New\config\SeriesName.txt; echo {quote("<b>${episode; s00e00 + ' - ' + t}</b>")} | Out-File -Encoding UTF8 E:\New\config\EpisodeDet.txt -append; Notification_Processor.py
+```
+
+This is the new qBittorrent script:
+```
+powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"
+```
+
+----
+
 **Date: 15 Aug, 2017:**
 I was thinking of making notifications better. Before this, I'd receive a notification for every file processed, meaning, if a series torrent with `n` number of episodes was processed, I'd receive `n` number of notifications. 
 
