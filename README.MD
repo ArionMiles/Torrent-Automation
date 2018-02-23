@@ -48,11 +48,12 @@ For qBittorrent, paste the script here:
 \- [FileBot.net](http://www.filebot.net/)
 
 This is my current script ([qBittorrent](https://www.filebot.net/forums/viewtopic.php?t=215#p9774)).
+
 ```
-powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"; "&{&'\path\to\Notification_Processor.py'}"
+powershell -Command "&{&'filebot.launcher' -script fn:amc --output '"E:\\"' --action 'move' --conflict 'skip' -non-strict --log-file 'amc.log' --def unsorted=y subtitles=en clean=y '"ut_dir=%F"' '"ut_kind=multi"' '"ut_title=%N"' '"ut_label=%L"' '"seriesFormat=E:\TV Shows\{n}\{''Season ''+s}\{s00e00} - {t}"' '"exec=@\path\to\args.txt"'}"
 ```
 
-An extensive log of filebot scripts I went through is present in [Filebot_Logs](../master/Filebot_Logs.MD) file
+An extensive log of filebot scripts I went through is present in [Filebot_Logs](../master/Filebot_Logs.MD) file. See the logs to see why I chose the current script.
 
 **NOTE**: The TVDb API v1, which is used by Filebot for fetching Series info [will be disabled](https://forums.thetvdb.com/viewtopic.php?f=3&t=36557) on **1st October 2017** in favour of [TVDb API v2.](https://api.thetvdb.com/swagger)
 
@@ -88,12 +89,11 @@ The format of the push notification is as follows:
 **Movies:**
 ```
 Title: Doctor Strange (2016)
-Message: The Movie is ready.
 ```
 **TV Shows:**
 ```
 Title: Game of Thrones
-Message: S06E09 - The Battle of Bastards is ready.
+Message: S06E09 - The Battle of Bastards
 ```
 #### Pushbullet:
 ----
@@ -101,7 +101,7 @@ For pushbullet, you need the API key, and [a python script](https://raw.githubus
 
 Now, in `args.txt` paste the below line:
 ```
-pushbullet.py -key YOUR_API_KEY -title {quote("* $n *")} -message {quote("The $type _ ${any{episode; s00e00 + ' - ' + t}{movie}} _ is ready.")}
+pushbullet.py -key YOUR_API_KEY -title {quote("* ${any{episode; n}{movie}} *")} -message {quote("${episode; s00e00 + ' - ' + t}")}
 ```
 
 Add this script to your environment variable OR a folder which is in your environment variable (Except C:\Windows\System32, never do that.)
@@ -111,9 +111,11 @@ Add this script to your environment variable OR a folder which is in your enviro
 For Telegram, you can use a script I made, [available here](https://github.com/ArionMiles/Filebot-To-Telegram/). Look at the instructions on the git repo. Be sure to edit the `creds.ini` with your Bot's `token` and `CHAT_ID`.
 
 In `args.txt` paste the below line:
+
 ```
-echo {quote("$n")} | Out-File -Encoding UTF8 SeriesName.txt; echo {quote("<b>${any{episode; s00e00 + ' - ' + t}{movie}}</b>")} | Out-File -Encoding UTF8 EpisodeDet.txt -append
+echo {quote("${any{episode; n}{movie}}")} | Out-File -Encoding UTF8 E:\New\config\SeriesName.txt; echo {quote("<b>${episode; s00e00 + ' - ' + t}</b>")} | Out-File -Encoding UTF8 E:\New\config\EpisodeDet.txt -append; Notification_Processor.py
 ```
+
 also create a `SeriesName.txt` & `EpisodeDet.txt` in the same directory.
 
 ## Tips & Common Issues
